@@ -1,0 +1,37 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+dependencies {
+    // implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //build tools
+    implementation "com.android.tools.build:gradle:${rootProject.ext.gradle_version}"
+
+    //gradle sdk
+    implementation gradleApi()
+
+    //groovy sdk
+    implementation localGroovy()
+
+    //transform
+    implementation 'com.android.tools.build:transform-api:1.9.0'
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+    google()
+}
+
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: uri("${rootDir}/arepo")) {
+            //authentication(userName: "name", password: "123")
+        }
+
+        pom.groupId = "dai.android.plugin"
+        pom.artifactId = "media"
+        pom.version = "${rootProject.ext.plugin_media_version}"
+    }
+}

@@ -1,0 +1,5 @@
+rootProject.name = 'AndroidStudioPlugin'
+
+
+include ':app'
+include ':media-plugin'
